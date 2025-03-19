@@ -13,6 +13,8 @@ const nextConfig = {
   },
   // Use standalone output for better deployment
   output: 'standalone',
+  // Ensure proper routing
+  trailingSlash: false,
   // Ignore backend directory during build
   webpack: (config, { isServer }) => {
     if (!isServer) {
