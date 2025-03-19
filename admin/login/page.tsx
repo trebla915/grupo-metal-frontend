@@ -16,12 +16,26 @@ export default function AdminLogin() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
+    
     try {
+      console.log('Submitting login with email:', credentials.email);
       const response = await login(credentials.email, credentials.password);
-      localStorage.setItem('adminToken', response.token);
-      router.push('/admin');
-    } catch {
-      setError('Invalid credentials');
+      console.log('Login response:', response);
+      
+      if (response.token) {
+        localStorage.setItem('adminToken', response.token);
+        router.push('/admin');
+      } else {
+        throw new Error('No token received from server');
+      }
+    } catch (error) {
+      console.error('Login error in page:', error);
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unexpected error occurred during login');
+      }
     } finally {
       setLoading(false);
     }
