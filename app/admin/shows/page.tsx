@@ -234,7 +234,7 @@ export default function ShowsManagement() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Ticket Link
+                  Ticket Link (Optional)
                 </label>
                 <input
                   type="url"
@@ -243,22 +243,25 @@ export default function ShowsManagement() {
                     setFormData({ ...formData, link: e.target.value })
                   }
                   className="w-full px-4 py-2.5 bg-black/50 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-rose transition-all duration-200"
-                  required
+                  placeholder="https://example.com/tickets"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Image URL
+                  Image URL (Optional)
                 </label>
                 <input
-                  type="text"
+                  type="url"
                   value={formData.imageUrl}
                   onChange={(e) =>
                     setFormData({ ...formData, imageUrl: e.target.value })
                   }
                   className="w-full px-4 py-2.5 bg-black/50 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-rose transition-all duration-200"
-                  required
+                  placeholder="https://example.com/image.jpg"
                 />
+                <p className="mt-1 text-sm text-gray-400">
+                  If no image is provided, a default band photo will be used.
+                </p>
               </div>
               <div className="flex justify-end space-x-4 mt-8">
                 <button

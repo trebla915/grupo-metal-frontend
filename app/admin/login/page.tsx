@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { login } from "../../services/auth";
+import { login, testConnection } from "../../services/auth";
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -12,6 +12,18 @@ export default function AdminLogin() {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [connectionStatus, setConnectionStatus] = useState<string>("");
+
+  useEffect(() => {
+    // Test connection when component mounts
+    testConnection()
+      .then(() => setConnectionStatus("Connected to backend"))
+      .catch((error) => {
+        console.error('Connection test failed:', error);
+        setConnectionStatus("Failed to connect to backend");
+        setError("Cannot connect to server. Please try again later.");
+      });
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,11 +35,11 @@ export default function AdminLogin() {
       const response = await login(credentials.email, credentials.password);
       console.log('Login response:', response);
       
-      if (response.token) {
+      if (response.token && response.user.role === 'admin') {
         localStorage.setItem('adminToken', response.token);
         router.push('/admin');
       } else {
-        throw new Error('No token received from server');
+        throw new Error('Access denied. Admin privileges required.');
       }
     } catch (error) {
       console.error('Login error in page:', error);
@@ -45,6 +57,16 @@ export default function AdminLogin() {
     <div className="min-h-screen flex items-center justify-center">
       <div className="bg-black/30 backdrop-blur-sm p-8 rounded-lg shadow-xl w-full max-w-md border border-white/10">
         <h1 className="text-2xl font-bold text-rose mb-6 text-center">Admin Login</h1>
+        
+        {connectionStatus && (
+          <div className={`mb-4 p-2 rounded ${
+            connectionStatus.includes("Connected") 
+              ? "bg-green-500/10 border border-green-500 text-green-500" 
+              : "bg-red-500/10 border border-red-500 text-red-500"
+          }`}>
+            {connectionStatus}
+          </div>
+        )}
         
         {error && (
           <div className="bg-red-500/10 border border-red-500 text-red-500 px-4 py-2 rounded mb-4">
@@ -87,7 +109,7 @@ export default function AdminLogin() {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || connectionStatus.includes("Failed")}
             className="w-full bg-rose text-white py-2 px-4 rounded-lg hover:bg-rose/90 transition disabled:opacity-50"
           >
             {loading ? "Logging in..." : "Login"}

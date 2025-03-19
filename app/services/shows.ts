@@ -8,7 +8,7 @@ export interface Show {
   specialInfo?: string; // Optional field for additional show information
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 class ShowsService {
   private shows: Show[] = [
@@ -34,8 +34,8 @@ class ShowsService {
 
   async getShows(): Promise<Show[]> {
     try {
-      console.log('Fetching shows from:', `${API_URL}/shows`);
-      const response = await fetch(`${API_URL}/shows`);
+      console.log('Fetching shows from:', `${API_URL}/api/shows`);
+      const response = await fetch(`${API_URL}/api/shows`);
       console.log('API Response status:', response.status);
       if (!response.ok) {
         throw new Error('Failed to fetch shows');
@@ -54,7 +54,7 @@ class ShowsService {
 
   async getUpcomingShows(): Promise<Show[]> {
     try {
-      const response = await fetch(`${API_URL}/shows/upcoming`);
+      const response = await fetch(`${API_URL}/api/shows/upcoming`);
       if (!response.ok) {
         throw new Error('Failed to fetch upcoming shows');
       }
@@ -68,23 +68,38 @@ class ShowsService {
 
   async createShow(show: Omit<Show, "id">): Promise<Show> {
     try {
-      console.log('Creating show at:', `${API_URL}/shows`);
+      const token = localStorage.getItem('adminToken');
+      console.log('Creating show - Token exists:', !!token);
+      
+      if (!token) {
+        console.error('No authentication token found');
+        throw new Error('No authentication token found');
+      }
+
+      console.log('Creating show at:', `${API_URL}/api/shows`);
       console.log('Show data:', show);
-      const response = await fetch(`${API_URL}/shows`, {
+      
+      const response = await fetch(`${API_URL}/api/shows`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}` // Add token for auth
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(show),
       });
+      
       console.log('Create show response status:', response.status);
+      console.log('Create show response headers:', Object.fromEntries(response.headers.entries()));
+      
       if (!response.ok) {
         const errorData = await response.text();
         console.error('Error response:', errorData);
         throw new Error('Failed to create show');
       }
-      return response.json();
+      
+      const data = await response.json();
+      console.log('Show created successfully:', data);
+      return data;
     } catch (error) {
       console.error('Error creating show:', error);
       throw error;
@@ -93,10 +108,16 @@ class ShowsService {
 
   async updateShow(show: Show): Promise<Show> {
     try {
-      const response = await fetch(`${API_URL}/shows/${show.id}`, {
+      const token = localStorage.getItem('adminToken');
+      if (!token) {
+        throw new Error('No authentication token found');
+      }
+
+      const response = await fetch(`${API_URL}/api/shows/${show.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(show),
       });
@@ -117,8 +138,16 @@ class ShowsService {
 
   async deleteShow(id: string): Promise<void> {
     try {
-      const response = await fetch(`${API_URL}/shows/${id}`, {
+      const token = localStorage.getItem('adminToken');
+      if (!token) {
+        throw new Error('No authentication token found');
+      }
+
+      const response = await fetch(`${API_URL}/api/shows/${id}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
       if (!response.ok) {
         throw new Error('Failed to delete show');
