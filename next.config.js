@@ -11,6 +11,7 @@ const nextConfig = {
       },
     ],
     unoptimized: true, // Add this for Vercel deployment
+    domains: ['grupo-metal-backend.onrender.com'],
   },
   // Use standalone output for better deployment
   output: 'standalone',
