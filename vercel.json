@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/api/:path*",
+      "destination": "https://grupo-metal-backend.onrender.com/api/:path*"
     }
   ],
   "headers": [
