@@ -4,7 +4,7 @@
 import Image from "next/image";
 
 // Use band photo as placeholder until actual gallery images are added
-const images = Array.from({ length: 10 }, (_, index) => `/band-photo.jpg`);
+const images = Array.from({ length: 10 }, () => `/band-photo.jpg`);
 
 export default function Gallery() {
   return (
@@ -18,8 +18,8 @@ export default function Gallery() {
               src={src} 
               alt={`Gallery Image ${index + 1}`} 
               width={300} 
-              height={300} 
-              className="w-full h-64 object-cover rounded-md" 
+              height={300}
+              className="w-full h-full object-cover"
             />
           </div>
         ))}

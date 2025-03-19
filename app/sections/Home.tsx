@@ -49,58 +49,29 @@ export default function HomeSection() {
                   <div className="relative aspect-square rounded-lg overflow-hidden shadow-2xl border-2 border-rose-600/20 transform hover:scale-[1.02] transition-all duration-500">
                     <Image 
                       src="/album art.jpg"
-                      alt="Volare Album Art"
+                      alt="Album Art"
                       fill
                       className="object-cover"
-                      priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   </div>
                 </div>
 
                 {/* Track Info */}
                 <div className="w-full md:w-1/2 lg:w-3/5 text-center md:text-left">
-                  {/* New Track Label */}
-                  <div className="inline-block bg-rose-600/90 text-white px-4 py-1 rounded-full text-sm font-medium tracking-wider mb-8">
-                    NEW SINGLE OUT NOW
-                  </div>
-
-                  {/* Track Title */}
-                  <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-rose-600 mb-6 tracking-wider leading-none">
-                    VOLARE
-                  </h1>
-
-                  {/* Track Description */}
-                  <p className="text-gray-300 text-lg md:text-xl mb-10 leading-relaxed max-w-2xl">
-                    Experience the power of metal with our latest single. A fusion of heavy riffs 
-                    and melodic intensity that defines the essence of Grupo Metal.
-                  </p>
-
+                  <h2 className="text-2xl md:text-3xl font-bold text-rose-600 mb-4">Latest Release</h2>
+                  <h3 className="text-xl md:text-2xl text-white mb-6">Track Name</h3>
+                  <p className="text-gray-300 mb-8">Album Name - 2024</p>
+                  
                   {/* Streaming Links */}
-                  <div className="inline-flex items-center justify-center md:justify-start gap-8">
-                    <a
-                      href="https://open.spotify.com/track/your-track-id"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-rose-600 transition-all duration-300 group"
-                    >
-                      <FaSpotify className="text-4xl transform group-hover:scale-125 transition-all" />
+                  <div className="flex justify-center md:justify-start gap-6">
+                    <a href="#" className="text-rose-600 hover:text-rose-500 transition-colors">
+                      <FaSpotify className="text-3xl" />
                     </a>
-                    <a
-                      href="https://music.apple.com/your-track"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-rose-600 transition-all duration-300 group"
-                    >
-                      <FaApple className="text-4xl transform group-hover:scale-125 transition-all" />
+                    <a href="#" className="text-rose-600 hover:text-rose-500 transition-colors">
+                      <FaYoutube className="text-3xl" />
                     </a>
-                    <a
-                      href="https://youtube.com/watch?v=your-video"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-rose-600 transition-all duration-300 group"
-                    >
-                      <FaYoutube className="text-4xl transform group-hover:scale-125 transition-all" />
+                    <a href="#" className="text-rose-600 hover:text-rose-500 transition-colors">
+                      <FaApple className="text-3xl" />
                     </a>
                   </div>
                 </div>
