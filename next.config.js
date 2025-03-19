@@ -15,6 +15,9 @@ const nextConfig = {
   output: 'standalone',
   // Ensure proper routing
   trailingSlash: false,
+  // Enable static page generation
+  reactStrictMode: true,
+  swcMinify: true,
   // Ignore backend directory during build
   webpack: (config, { isServer }) => {
     if (!isServer) {

@@ -5,9 +5,12 @@ import Merch from './sections/Merch'
 import Gallery from './sections/Gallery'
 import Contact from './sections/Contact'
 
+// Force static generation
+export const dynamic = 'force-static'
+
 export default function Home() {
   return (
-    <div className="w-full">
+    <main className="w-full">
       <section id="home" className="min-h-screen w-full">
         <HomeSection />
       </section>
@@ -26,6 +29,6 @@ export default function Home() {
       <section id="contact" className="min-h-screen w-full bg-black">
         <Contact />
       </section>
-    </div>
+    </main>
   )
 }
