@@ -4,12 +4,13 @@ import Bio from './sections/Bio'
 import Merch from './sections/Merch'
 import Gallery from './sections/Gallery'
 import Contact from './sections/Contact'
+import { JSX } from 'react'
 
 // Force static generation
 export const dynamic = 'force-static'
 export const revalidate = false
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <main className="w-full">
       <section id="home" className="min-h-screen w-full">

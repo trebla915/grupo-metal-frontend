@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaPlay, FaPause, FaStepBackward, FaStepForward, FaVolumeUp, FaChevronDown, FaChevronUp } from "react-icons/fa";
 // import Image from "next/image";
 
@@ -13,10 +13,22 @@ export default function MusicPlayer() {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
+  const [isAudioAvailable, setIsAudioAvailable] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.onerror = () => {
+        setIsAudioAvailable(false);
+      };
+      audioRef.current.oncanplay = () => {
+        setIsAudioAvailable(true);
+      };
+    }
+  }, []);
+
   const togglePlayPause = () => {
-    if (!audioRef.current) return;
+    if (!audioRef.current || !isAudioAvailable) return;
     if (isPlaying) {
       audioRef.current.pause();
     } else {
@@ -27,20 +39,12 @@ export default function MusicPlayer() {
 
   const nextTrack = () => {
     setCurrentTrack((prev) => (prev + 1) % tracks.length);
-    if (audioRef.current) {
-      audioRef.current.src = tracks[(currentTrack + 1) % tracks.length].src;
-      audioRef.current.play();
-      setIsPlaying(true);
-    }
+    setIsPlaying(false);
   };
 
   const prevTrack = () => {
     setCurrentTrack((prev) => (prev - 1 + tracks.length) % tracks.length);
-    if (audioRef.current) {
-      audioRef.current.src = tracks[(currentTrack - 1 + tracks.length) % tracks.length].src;
-      audioRef.current.play();
-      setIsPlaying(true);
-    }
+    setIsPlaying(false);
   };
 
   return (
