@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   description: 'Official website of Grupo Metal - South Texas Metal Band',
 }
 
-// Force static generation
-export const dynamic = 'force-static'
-export const revalidate = false
+// Allow dynamic content
+export const dynamic = 'auto'
+export const revalidate = 3600 // Revalidate every hour
 
 export default function HomePage() {
   return (
