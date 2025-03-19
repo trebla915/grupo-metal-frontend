@@ -10,6 +10,7 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+    unoptimized: true, // Add this for Vercel deployment
   },
   // Use standalone output for better deployment
   output: 'standalone',
@@ -34,6 +35,9 @@ const nextConfig = {
   basePath: '',
   // Add assetPrefix if needed
   assetPrefix: '',
+  // Add this for Vercel deployment
+  poweredByHeader: false,
+  compress: true,
 }
 
 module.exports = nextConfig 

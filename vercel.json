@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://grupo-metal-backend.onrender.com/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
     }
   ],
   "headers": [
