@@ -58,19 +58,19 @@ export default function HomeSection() {
 
                 {/* Track Info */}
                 <div className="w-full md:w-1/2 lg:w-3/5 text-center md:text-left">
-                  <h2 className="text-2xl md:text-3xl font-bold text-rose-600 mb-4">Latest Release</h2>
-                  <h3 className="text-xl md:text-2xl text-white mb-6">Track Name</h3>
-                  <p className="text-gray-300 mb-8">Album Name - 2024</p>
+                  <h2 className="text-2xl md:text-3xl font-bold text-rose-600 mb-4">New Single</h2>
+                  <h3 className="text-xl md:text-2xl text-white mb-6">"La Flor"</h3>
+                  <p className="text-gray-300 mb-8">Grupo Metal - 2024</p>
                   
                   {/* Streaming Links */}
                   <div className="flex justify-center md:justify-start gap-6">
-                    <a href="#" className="text-rose-600 hover:text-rose-500 transition-colors">
+                    <a href="https://open.spotify.com/track/2cvC8BFlveVkvInkcGjpXy?si=d5afdad1c3694b0e" target="_blank" rel="noopener noreferrer" className="text-rose-600 hover:text-rose-500 transition-colors">
                       <FaSpotify className="text-3xl" />
                     </a>
-                    <a href="#" className="text-rose-600 hover:text-rose-500 transition-colors">
+                    <a href="https://youtu.be/gMw7BZ_TuZs?si=9z95gO6nIR1_ofUI" target="_blank" rel="noopener noreferrer" className="text-rose-600 hover:text-rose-500 transition-colors">
                       <FaYoutube className="text-3xl" />
                     </a>
-                    <a href="#" className="text-rose-600 hover:text-rose-500 transition-colors">
+                    <a href="https://music.apple.com/us/album/la-flor-feat-chris-perez-single/1793576946" target="_blank" rel="noopener noreferrer" className="text-rose-600 hover:text-rose-500 transition-colors">
                       <FaApple className="text-3xl" />
                     </a>
                   </div>
