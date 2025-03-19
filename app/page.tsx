@@ -7,6 +7,7 @@ import Contact from './sections/Contact'
 
 // Force static generation
 export const dynamic = 'force-static'
+export const revalidate = false
 
 export default function Home() {
   return (

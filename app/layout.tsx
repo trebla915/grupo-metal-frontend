@@ -23,10 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} ${metalMania.className} relative min-h-screen bg-black text-white antialiased selection:bg-rose selection:text-white`}>
-        <div className="flex flex-col min-h-screen">
-          <NavigationWrapper />
-          {children}
-        </div>
+        <NavigationWrapper />
+        {children}
       </body>
     </html>
   )
