@@ -5,9 +5,9 @@ import Merch from './sections/Merch'
 import Gallery from './sections/Gallery'
 import Contact from './sections/Contact'
 
-export default function Page() {
+export default function Home() {
   return (
-    <main className="w-full">
+    <div className="w-full">
       <section id="home" className="min-h-screen w-full">
         <HomeSection />
       </section>
@@ -26,6 +26,6 @@ export default function Page() {
       <section id="contact" className="min-h-screen w-full bg-black">
         <Contact />
       </section>
-    </main>
+    </div>
   )
 }

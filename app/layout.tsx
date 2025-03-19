@@ -25,9 +25,7 @@ export default function RootLayout({
       <body className={`${inter.className} ${metalMania.className} relative min-h-screen bg-black text-white antialiased selection:bg-rose selection:text-white`}>
         <div className="flex flex-col min-h-screen">
           <NavigationWrapper />
-          <main className="flex-grow relative z-10">
-            {children}
-          </main>
+          {children}
         </div>
       </body>
     </html>
