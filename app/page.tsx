@@ -1,16 +1,21 @@
-import HomeSection from './sections/Home'
-import Shows from './sections/Shows'
-import Bio from './sections/Bio'
-import Merch from './sections/Merch'
-import Gallery from './sections/Gallery'
-import Contact from './sections/Contact'
-import { JSX } from 'react'
+import HomeSection from '@/sections/Home'
+import Shows from '@/sections/Shows'
+import Bio from '@/sections/Bio'
+import Merch from '@/sections/Merch'
+import Gallery from '@/sections/Gallery'
+import Contact from '@/sections/Contact'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Grupo Metal - Home',
+  description: 'Official website of Grupo Metal - South Texas Metal Band',
+}
 
 // Force static generation
 export const dynamic = 'force-static'
 export const revalidate = false
 
-export default function Home(): JSX.Element {
+export default function HomePage() {
   return (
     <main className="w-full">
       <section id="home" className="min-h-screen w-full">

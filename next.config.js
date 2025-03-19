@@ -30,6 +30,10 @@ const nextConfig = {
     }
     return config;
   },
+  // Add basePath if needed
+  basePath: '',
+  // Add assetPrefix if needed
+  assetPrefix: '',
 }
 
 module.exports = nextConfig 
